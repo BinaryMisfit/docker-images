@@ -1,10 +1,9 @@
 ﻿FROM mcr.microsoft.com/azure-sql-edge:latest
-ENV DEBIAN_FRONTEND noninteractive
-ENV DEBIAN_FRONTEND teletype
+ARG DEBIAN_FRONTEND=noninteractive
 USER root
 RUN apt-get update
-RUN apt-get upgrade --yes
-RUN apt-get --no-install-recommends install mssql-cli --yes
+RUN ACCEPT_EULA=Y apt-get upgrade --yes
+RUN ACCEPT_EULA=Y apt-get --no-install-recommends install mssql-cli --yes
 RUN mkdir -p /scripts
 RUN mkdir -p /sqldata
 RUN mkdir -p /var/opt/mssql/data
