@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 printf "Running SQL Server"
-if [[ -d /sqldata ]]; then
-  sudo chown -R mssql: /sqldata
+if [[ -d /var/opt/mssql/user-data ]]; then
+  sudo chown -R mssql: /var/opt/mssql/user-data
 fi
 
 if [[ -d /var/opt/mssql/data ]]; then
