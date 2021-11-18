@@ -1,5 +1,4 @@
-# docker-images
-DockerHub custom repository
+#DockerHub custom images
 
 Various custom docker images
 
