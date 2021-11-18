@@ -1,4 +1,4 @@
-﻿FROM mcr.microsoft.com/azure-sql-edge:latest
+FROM mcr.microsoft.com/azure-sql-edge:latest
 ARG DEBIAN_FRONTEND=noninteractive
 USER root
 RUN apt-get update
