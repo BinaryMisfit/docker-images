@@ -8,4 +8,4 @@ if [[ -d /var/opt/mssql/data ]]; then
   sudo chown -R mssql: /var/opt/mssql/data
 fi
 
-exec /opt/mssql/bin/sqlservr
+/opt/mssql/bin/sqlservr
