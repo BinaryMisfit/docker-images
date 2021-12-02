@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+pushd "$HOME/.acme.sh" > /dev/null || return
+./acme.sh --cron -m "$ACME_SH_ARGS"
+popd > /dev/null || return

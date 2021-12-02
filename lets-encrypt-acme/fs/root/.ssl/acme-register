@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+pushd "$HOME/.acme.sh" > /dev/null || return
+./acme.sh --register-account --log -m  "$LETS_ENCRYPT_MAIL" "$ACME_SH_ARGS"
+popd > /dev/null || return

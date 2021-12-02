@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
-ls -lha /root
-acme.sh -h
+pushd "$HOME/.ssl" > /dev/null || return
+./acme-cron
+./acme-issue
 service cron start > /dev/null
 trap "service cron stop > /dev/null; exit" SIGINT SIGTERM
 while true; do
-  tail -F /var/log/cron
+  tail -F "$HOME/.acme.sh/acme.sh.log"
 done
