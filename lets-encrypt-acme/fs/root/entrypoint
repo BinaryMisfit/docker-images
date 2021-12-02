@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+ls -lha /root
+acme.sh -h
+service cron start > /dev/null
+trap "service cron stop > /dev/null; exit" SIGINT SIGTERM
+while true; do
+  tail -F /var/log/cron
+done
