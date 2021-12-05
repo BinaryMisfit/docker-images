@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-if [ ! -f "$HOME/.data/domains" ]; then
-  exit
-fi
-
 pushd "$HOME/.acme.sh" > /dev/null || return
+./acme.sh --cron -m "$ACME_SH_ARGS" > /dev/null
 popd > /dev/null || return

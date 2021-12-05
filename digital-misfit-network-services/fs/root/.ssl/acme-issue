@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+if [ ! -f "/etc/ssl/cert-domains.conf" ]; then
+  exit
+fi
+
+mapfile -t DOMAINS <"/etc/ssl/cert-domains.conf"
+pushd "$HOME/.acme.sh" > /dev/null || return
+for ENTRY in "${DOMAINS[@]}"; do
+  mapfile -t -d \, DOMAIN_INFO <<< "$ENTRY"
+  printf -v DOMAIN_ARGS -- " --domain \"%s\"" "${DOMAIN_INFO[@]}"
+  printf -v ACME_ISSUE './acme.sh --issue --dns dns_cloudns --ecc %s%s' "$ACME_SH_ARGS" "${DOMAIN_ARGS[@]}"
+  printf "%s\n" "$ACME_ISSUE"
+done
+
+popd > /dev/null || return

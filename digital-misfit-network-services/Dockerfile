@@ -15,7 +15,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install -q
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y autoremove --purge
 RUN DEBIAN_FRONTEND=noninteractive apt-get autoclean
 RUN rm -rf /etc/cron.*/*
-COPY fs/root /root
+COPY fs /
 RUN chmod +x /root/entrypoint
 RUN chmod +x /root/.ssl/acme*
 RUN /root/.ssl/acme-install
