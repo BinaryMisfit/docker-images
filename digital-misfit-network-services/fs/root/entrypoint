@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
-pushd "$HOME/.ssl" >/dev/null || return
-./acme-cron
-crontab -l
+"$HOME/.ssl/acme-install" >/dev/null 2>&1
+"$HOME/.ssl/acme-register" >/dev/null 2>&1
+"$HOME/.ssl/acme-cron" >/dev/null 2>&1
+env > "$HOME/.acme.sh/acme.cron.env"
+touch "$HOME/.acme.sh/acme.sh.log"
 service cron start >/dev/null
 trap "service cron stop > /dev/null; exit" SIGINT SIGTERM
 while true; do

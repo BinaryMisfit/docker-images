@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
-pushd "$HOME/.acme.sh" > /dev/null || return
-./acme.sh --register-account --log -m  "$LETS_ENCRYPT_MAIL" "$ACME_SH_ARGS"
-popd > /dev/null || return
+if [ -f "$HOME/.acme.sh/account.conf" ]; then
+  exit
+fi
+
+"$HOME/.acme.sh/acme.sh" --register-account \
+  --home "$HOME/acme.sh" \
+  --config-home "$LE_CONFIG_HOME" \
+  --cert-home "$LE_WORKING_DIR" \
+  -m "$LE_EMAIL" \
+  "$ACME_SH_ARGS"

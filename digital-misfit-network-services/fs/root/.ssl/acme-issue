@@ -3,13 +3,17 @@ if [ ! -f "/etc/ssl/cert-domains.conf" ]; then
   exit
 fi
 
+source "$HOME/.acme.sh/acme.cron.env"
+env
+ls -lha "$LE_WORKING_DIR"
 mapfile -t DOMAINS <"/etc/ssl/cert-domains.conf"
-pushd "$HOME/.acme.sh" > /dev/null || return
 for ENTRY in "${DOMAINS[@]}"; do
   mapfile -t -d \, DOMAIN_INFO <<< "$ENTRY"
-  printf -v DOMAIN_ARGS -- " --domain \"%s\"" "${DOMAIN_INFO[@]}"
-  printf -v ACME_ISSUE './acme.sh --issue --dns dns_cloudns --ecc %s%s' "$ACME_SH_ARGS" "${DOMAIN_ARGS[@]}"
-  printf "%s\n" "$ACME_ISSUE"
+  printf -v DOMAIN_ARGS -- ' --domain \"%s\"' "${DOMAIN_INFO[@]}"
+  printf -v ACME_ISSUE '%s/.acme.sh/acme.sh --issue --dns dns_cloudns --ecc --debug' "$HOME"
+  printf -v ACME_ISSUE '%s --home \"%s/.acme.sh\" --config-home \"%s\"' "$ACME_ISSUE" "$HOME" "$LE_CONFIG_HOME"
+  printf -v ACME_ISSUE '%s --cert-home \"%s\" %s%s' "$ACME_ISSUE" "$LE_WORKING_DIR" "$ACME_SH_ARGS" "${DOMAIN_ARGS[@]}"
+  echo "$ACME_ISSUE"
+  #eval "$ACME_ISSUE"
 done
-
-popd > /dev/null || return
+ls -lha "$LE_WORKING_DIR"

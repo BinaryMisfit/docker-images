@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
-pushd "$HOME/.acme.sh" > /dev/null || return
-./acme.sh --cron -m "$ACME_SH_ARGS" > /dev/null
-popd > /dev/null || return
+"$HOME/.acme.sh/acme.sh" --cron \
+  --home "$HOME/.acme.sh" \
+  --config-home "$LE_CONFIG_HOME" \
+  --cert-home "$LE_WORKING_DIR" \
+  --log \
+  "$ACME_SH_ARGS"
