@@ -1,2 +1,1 @@
-0 0 */3 * * root "/root/.acme.sh"/acme.sh --upgrade >/proc/1/fd/1 2>/proc/1/fd/2
-# Blank line for valid crontab
+0 0 */3 * * root "/root/.acme.sh"/acme.sh --upgrade >/proc/1/fd/1 2>/proc/1/fd/2# Blank line for valid crontab
