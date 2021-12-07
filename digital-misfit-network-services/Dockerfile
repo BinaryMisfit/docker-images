@@ -12,6 +12,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y autoremove --purge
 RUN DEBIAN_FRONTEND=noninteractive apt-get autoclean
 RUN rm -rf /etc/cron.*/*
 COPY fs /
-RUN chmod +x /root/entrypoint
+RUN chmod +x /root/entrypoint.sh
 RUN chmod +x /root/.ssl/acme*
-ENTRYPOINT ["/root/entrypoint"]
+ENTRYPOINT ["/bin/bash", "-c", "/root/entrypoint.sh"]

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-"$HOME/.ssl/acme-install" >/dev/null 2>&1
-"$HOME/.ssl/acme-register" >/dev/null 2>&1
-"$HOME/.ssl/acme-cron" >/dev/null 2>&1
+/bin/bash -c "$HOME/.ssl/acme-install.sh" >/dev/null 2>&1
+/bin/bash -c "$HOME/.ssl/acme-register.sh" >/dev/null 2>&1
+/bin/bash -c "$HOME/.ssl/acme-cron.sh" >/dev/null 2>&1
 env > "$HOME/.acme.sh/acme.cron.env"
 touch "$HOME/.acme.sh/acme.sh.log"
 service cron start >/dev/null

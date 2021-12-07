@@ -1,1 +1,3 @@
-* text=false
+*       text=auto
+*.sh    text eol=LF
+cron-*  text eol=LF
