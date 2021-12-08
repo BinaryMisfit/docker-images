@@ -1,0 +1,2 @@
+*/5 * * * * root $HOME/.cron.env; /root/dns/dns-dynamic-update.sh >/proc/1/fd/1 2>/proc/1/fd/2
+# Blank line for valid crontab
